@@ -1,0 +1,21 @@
+{
+    "Version": 0,
+    "FourCC": "",
+    "FirstSectionOffset": 0,
+    "SectionMaxWords": 65535,
+    "SectionMaxSize": 262140,
+    "SectionTypeMask": 3758096384,
+    "SectionTypeShift": 29,
+    "SectionSizeMask": 65535,
+    "SectionSizeShift": 0,
+    "EventTypeMask": 983040,
+    "EventTypeShift": 16,
+    "CrateIndexMask": 0,
+    "CrateIndexShift": 0,
+    "ModuleTypeMask": 258048,
+    "ModuleTypeShift": 12,
+    "SubEventMaxWords": 1023,
+    "SubEventMaxSize": 4092,
+    "SubEventSizeMask": 1023,
+    "SubEventSizeShift": 0
+}

@@ -1,0 +1,21 @@
+{
+    "Version": 2,
+    "FourCC": "MVME",
+    "FirstSectionOffset": 8,
+    "SectionMaxWords": 1048575,
+    "SectionMaxSize": 4194300,
+    "SectionTypeMask": 3758096384,
+    "SectionTypeShift": 29,
+    "SectionSizeMask": 1048575,
+    "SectionSizeShift": 0,
+    "EventTypeMask": 62914560,
+    "EventTypeShift": 22,
+    "CrateIndexMask": 469762048,
+    "CrateIndexShift": 26,
+    "ModuleTypeMask": 4278190080,
+    "ModuleTypeShift": 24,
+    "SubEventMaxWords": 1048575,
+    "SubEventMaxSize": 4194300,
+    "SubEventSizeMask": 1048575,
+    "SubEventSizeShift": 0
+}
