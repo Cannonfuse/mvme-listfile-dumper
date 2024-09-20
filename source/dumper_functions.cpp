@@ -511,11 +511,90 @@ void process_listfile(std::istream &infile, listfile TheListfile, std::map<uint3
 
 
                         // Get the unique module ID from the module settings header in the vector
+                        // printf("subEventData.size() = %u\n",subEventData.size());
                         uint32_t moduleID= (subEventData.at(0) & currentmodule.getID_Mask()) >> currentmodule.getID_Shift();
                         if(useR65Hack)
                         {
                             moduleID += 1000*moduleType;
                         }
+
+                        std::vector<bool> CleanedSubEventData;
+                        // We want to save the first 32 bits of subEventData, always
+                        // CleanedSubEventData.push_back(true); 
+
+                        // auto OldSubEventData = subEventData;
+
+                        // bool isEvent{false};
+
+
+
+                        uint32_t headertest = subEventData.at(0) & 0xc0000000;
+                        bool HeaderNotFound{false};
+
+                        // printf("\n\n");
+                        // for(auto i = 0; i < subEventData.size(); ++i)
+                        // {
+                        //     printf("subEventData.at(%u) = %X\n",i,subEventData.at(i));
+                        // }
+                        if(headertest != 0x40000000)
+                        {
+                            HeaderNotFound = true;                            
+                            // printf("Header not found!\n");
+                        }
+
+
+
+                        // for(auto j = 0; j < subEventData.size(); ++j)
+                        // {
+                        //     uint32_t isEventHeader = subEventData.at(j) & 0xc0000000;
+                        //     if(isEventHeader == 0x40000000)
+                        //     {
+                        //         isEvent = true;
+                        //         printf("EventHeader");
+                        //     }
+                        //     else if(subEventData.at(i) = 0x87654321)
+                        //     {
+                        //         isEvent = false;
+                        //     }
+                        //     // else
+                        //     // {
+                        //     //     isEvent;
+                        //     // }
+                        //     CleanedSubEventData.push_back(isEvent);
+                        //     // printf("subEventData.at(%u) = %X\n",j,subEventData.at(j));
+
+                        // }
+
+                        // printf("\n\n");
+                        // for(auto i = 0; i < CleanedSubEventData.size(); ++i)
+                        // {
+                        //     if(CleanedSubEventData.at(i))
+                        //     {printf("CleanedSubEventData.at(%u) = true\n",i);}
+                        //     else
+                        //     {printf("CleanedSubEventData.at(%u) = false\n",i);}
+                        // }
+
+                        // // CleanedSubEventData.at(0) = true;
+                        // // CleanedSubEventData.at(CleanedSubEventData.size()-1) = true;
+
+                        // std::vector<uint32_t> NewSubEventData;
+
+                        // for(auto j = 0; j < subEventData.size(); ++j)
+                        // {
+                        //     if(CleanedSubEventData.at(j))
+                        //     {
+                        //         NewSubEventData.push_back(subEventData.at(j));
+                        //     }
+                        // }
+                        // // NewSubEventData.push_back(0x87654321);
+
+                        // subEventData = NewSubEventData;
+                        // printf("\n\n\n\n\n\n\n\n");
+                        // for(auto i = 0; i < subEventData.size(); ++i)
+                        // {
+                        //     printf("clean_subEventData.at(%u) = %X\n",i,subEventData.at(i));
+                        // }
+                        
 
                         // printf("  subEventHeader=0x%08x, moduleType=%u (%s), subEventSize=%u\n",
                         //     subEventHeader, moduleType, currentmodule.getModuleName().c_str(),
@@ -523,15 +602,30 @@ void process_listfile(std::istream &infile, listfile TheListfile, std::map<uint3
 
                         // printf("subEventData.at(0) = %X, ModuleID = %u\n", subEventData.at(0), moduleID);
 
-
+                        if(!HeaderNotFound)
+                        {
                         switch(currentmodule.getModuleType())
                         {
                             case VMEModuleType::MDPP16_QDC:
                             {
+
                                 // Sort the subEventData into a vector
+                                // std::vector<mdpp16_qdc> modulereturndata;
+                                // try
+                                // {
                                 auto modulereturndata = sortData<mdpp16_qdc>(subEventData, currentmodule);
+                                // }
+                                // catch(std::out_of_range &e)
+                                // {
+                                //     std::string vecerror = "\n\n\n\nError generating modulereturndata in mdpp16qdc\n\n\n\n";
+                                //     throw std::out_of_range(vecerror);
 
-
+                                // }
+                                // printf("\n\n\n\n\n\n\n\n");
+                                // for(auto i = 0; i < EventData.size(); ++i)
+                                // {
+                                //     printf("EventData.at(%u) = %X\n",i,EventData.at(i));
+                                // }
                                 // Get the tree name to store the data in
                                 // If the moduleID is not found, indicating an error in build_root_file, 
                                 // print the moduleID with an error message.
@@ -577,7 +671,24 @@ void process_listfile(std::istream &infile, listfile TheListfile, std::map<uint3
                             case VMEModuleType::MDPP16_SCP:
                             {
                                 // Sort the subEventData into a vector
+                                // std::vector<mdpp16_scp> modulereturndata;
+                                // try
+                                // {
                                 auto modulereturndata = sortData<mdpp16_scp>(subEventData, currentmodule);
+                                // }
+                                // catch(std::out_of_range &e)
+                                // {
+                                //     printf("\n\n\n\n\n\n\n\n");
+                                //     for(auto i = 0; i < EventData.size(); ++i)
+                                //     {
+                                //         printf("EventData.at(%u) = %X\n",i,EventData.at(i));
+                                //     }
+                                //     std::string vecerror = "\n\n\n\nError generating modulereturndata in mdpp16scp\n\n\n\n";
+                                //     throw std::out_of_range(vecerror);
+
+                                // }
+
+                                // auto modulereturndata = sortData<mdpp16_scp>(subEventData, currentmodule);
 
                                 // Get the tree name to store the data in
                                 // If the moduleID is not found, indicating an error in build_root_file, 
@@ -1174,6 +1285,7 @@ void process_listfile(std::istream &infile, listfile TheListfile, std::map<uint3
                                 break;
 
                             }
+                        }
                         }
                     }
                     total_events++;
@@ -2961,22 +3073,27 @@ void build_root_file(std::istream &infile, listfile &TheListfile, bool useR65Hac
                         {
                             moduleID += 1000*moduleType;
                         }
-                        // printf("subEventData.at(0) = %X, ModuleID = %u\n", subEventData.at(0), moduleID);
+                        // printf("subEventData.at(0) = %X, ModuleID = %u, moduleType=%u (%s)\n", subEventData.at(0), moduleID, moduleType, currentmodule.getModuleName().c_str());
 
 
                         free (rawSubEventData);
 
                         testModuleName += "_" + std::to_string(moduleID);
-
-                        if(moduleNameTypeMap.empty())
+                        uint32_t isDeviceHeader = (subEventData.at(0) & 0xf0000000) >> 28;
+                        if(isDeviceHeader == 4)
                         {
-                            moduleNameTypeMap.insert(std::pair<uint32_t,std::tuple<std::string,VMEModuleType>>(moduleID,std::make_tuple(testModuleName,currentmodule.getModuleType())));
-                        }
-                        else
-                        {
-                            if(moduleNameTypeMap.count(moduleID) == 0)
+                            if(moduleNameTypeMap.empty())
                             {
                                 moduleNameTypeMap.insert(std::pair<uint32_t,std::tuple<std::string,VMEModuleType>>(moduleID,std::make_tuple(testModuleName,currentmodule.getModuleType())));
+                            }
+                            else
+                            {
+                                if(moduleNameTypeMap.count(moduleID) == 0)
+                                {
+                                    printf("subEventData.at(0) = %X, ModuleID = %u, moduleType=%u (%s)\n", subEventData.at(0), moduleID, moduleType, currentmodule.getModuleName().c_str());
+
+                                    moduleNameTypeMap.insert(std::pair<uint32_t,std::tuple<std::string,VMEModuleType>>(moduleID,std::make_tuple(testModuleName,currentmodule.getModuleType())));
+                                }
                             }
                         }
 
@@ -3308,6 +3425,7 @@ std::vector<mdpp16_scp> sortData(std::vector<uint32_t> subEventData, MVMEmodule 
     uint64_t TIMESTAMP{0}, hights{0}, lowts{0};
     uint32_t channel, data;
     bool lowtsset{false};
+    
     for(auto i = 0; i < subEventData.size(); ++i)
     {
         bool overflowflag{false}, pileupflag{false};
@@ -3375,7 +3493,8 @@ std::vector<mdpp16_scp> sortData(std::vector<uint32_t> subEventData, MVMEmodule 
         TIMESTAMP = lowts | hights;
     }
 
-
+    // try
+    // {
     for(auto i = 0; i < ADC.size(); ++i)
     {
 
@@ -3392,6 +3511,28 @@ std::vector<mdpp16_scp> sortData(std::vector<uint32_t> subEventData, MVMEmodule 
         temporary_module.TIMESTAMP = TIMESTAMP;
         module_to_return.push_back(temporary_module);
     }
+    // }
+    // catch(std::out_of_range &e)
+    // {
+    //     printf("\n\n\n\n\n\n\n\n\n");
+    //     for(auto i = 0; i < subEventData.size(); ++i)
+    //     {
+    //         printf("subEventData.at(%u) = %X\n",i,subEventData.at(i));
+    //     }
+    //     std::string thesizes = "\n\nADC.size() = " + std::to_string(ADC.size()) + "\n" +
+    //                            "OVERFLOW.size() = " +  std::to_string(OVERFLOW.size()) + "\n" +
+    //                            "PILEUP.size() = " +  std::to_string(PILEUP.size()) + "\n" +
+    //                            "TOF.size() = " +  std::to_string(TOF.size()) + "\n" +
+    //                            "ROUTE_EVT.size() = "  +  std::to_string(ROUTE_EVT.size()) + "\n" +
+    //                            "Failed at module_to_return filling loop\n\n";
+
+    //     printf("%s",thesizes.c_str());
+        
+    //     // throw std::out_of_range(thesizes);
+    //     std::vector<mdpp16_scp> errmodule;
+    //     return errmodule;
+
+    // }
 
     return module_to_return;
 }

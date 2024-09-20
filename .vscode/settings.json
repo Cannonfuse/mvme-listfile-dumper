@@ -67,7 +67,9 @@
         "tree2a.C": "cpp",
         "span": "cpp",
         "list": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "optional": "cpp",
+        "ranges": "cpp"
     },
     "cmake.configureOnOpen": true
 }
