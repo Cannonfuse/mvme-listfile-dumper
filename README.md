@@ -10,6 +10,8 @@ To build this, you will need:
 - libzip (on Debian based distros, sudo apt install libzip-dev)
 - nlohmann json (tested with 3.10.5, installed via sudo apt install nlohmann-json3-dev in Ubuntu 22.04)
 
+On Ubuntu 22.04 to get the necessary packages: sudo apt install libzip-dev nlohmann-json3-dev
+
 ## Install
 
 Install it wherever you want. You will need to source the initDUMPER.sh file in path-to-install/bin to use it. If you use it in an ROOT analysis, make sure to
