@@ -11,8 +11,8 @@ To build this, you will need:
 
 ## Install
 
-Install it wherever you want. You will need to source the initDUMPER.sh file in <path-to-install>/bin to use it. If you use it in an ROOT analysis, make sure to
-include the modules.h file in <path-to-install>/include/ directory.
+Install it wherever you want. You will need to source the initDUMPER.sh file in path-to-install/bin to use it. If you use it in an ROOT analysis, make sure to
+include the modules.h file in path-to-install/include directory.
 
 ## Usage
 
