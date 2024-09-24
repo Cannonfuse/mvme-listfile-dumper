@@ -14,6 +14,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Find the CERN root components RIO (for file IO) and Tree (TTree/TNTuple)
 find_package(ROOT REQUIRED COMPONENTS RIO Tree)
+find_package(nlohmann_json REQUIRED)
 
 # Find the libzip library
 # https://libzip.org/
@@ -47,7 +48,7 @@ add_library(modules SHARED ${PROJECT_SOURCE_DIR}/source/modules.cpp)
 
 
 add_executable(mvme-listfile-dumper listfile-dumper.cpp ${sources} ${headers})
-target_link_libraries(mvme-listfile-dumper PUBLIC ROOT::RIO ROOT::Tree ${LIBZIP_LIBRARY} listfile MVMEmodule modules)
+target_link_libraries(mvme-listfile-dumper PUBLIC ROOT::RIO ROOT::Tree ${LIBZIP_LIBRARY} listfile MVMEmodule modules PRIVATE nlohmann_json::nlohmann_json)
 
 target_include_directories(mvme-listfile-dumper PRIVATE  ${CMAKE_CURRENT_SOURCE_DIR})
 ROOT_GENERATE_DICTIONARY(modules_dict ${INCLUDEDIR}/modules.h LINKDEF ${INCLUDEDIR}/linkdef.h MODULE modules)

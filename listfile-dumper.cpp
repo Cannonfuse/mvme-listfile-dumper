@@ -1,6 +1,8 @@
 /* mvme-listfile-dumper - format mvme listfile content and print it to stdout
  *
  * Copyright (C) 2017  Florian Lüke <f.lueke@mesytec.com>
+ * Copyright (C) 2023-2024 Justin Warren <jw402216@ohio.edu>
+ * 
  *
  * 
  * This program is free software; you can redistribute it and/or modify
