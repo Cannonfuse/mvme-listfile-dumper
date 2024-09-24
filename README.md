@@ -10,7 +10,7 @@ To build this, you will need:
 - libzip (on Debian based distros, sudo apt install libzip-dev)
 - nlohmann json (tested with 3.10.5, installed via sudo apt install nlohmann-json3-dev in Ubuntu 22.04)
 
-On Ubuntu 22.04 to get the necessary packages: sudo apt install libzip-dev nlohmann-json3-dev
+On Ubuntu 22.04 to get the necessary packages: **sudo apt install libzip-dev nlohmann-json3-dev**
 
 ## Install
 
