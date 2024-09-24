@@ -1,2 +1,6 @@
 *.png
 *.jpg
+NishaAnalysis.cpp
+TestAnalysis.cpp
+.vscode/
+build/

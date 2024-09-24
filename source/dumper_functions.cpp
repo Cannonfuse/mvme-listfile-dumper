@@ -3421,7 +3421,7 @@ std::vector<mdpp16_scp> sortData(std::vector<uint32_t> subEventData, MVMEmodule 
 
     std::vector<uint32_t> ADC, TOF, ROUTE_EVT;
     std::vector<bool> PILEUP, OVERFLOW;
-    uint32_t ID{0xffffffff}, TRIGGER{0xffffffff}, ROUTE_TRIGGER{0xffffffff}, ADC_RES{0xffffffff}, TDC_RES{0xffffffff};
+    uint32_t ID{0xffffffff}, ADC_RES{0xffffffff}, TDC_RES{0xffffffff};
     uint64_t TIMESTAMP{0}, hights{0}, lowts{0};
     uint32_t channel, data;
     bool lowtsset{false};
@@ -3476,12 +3476,6 @@ std::vector<mdpp16_scp> sortData(std::vector<uint32_t> subEventData, MVMEmodule 
                 TOF.push_back(data);
                 
             }
-            else if(channel == 32 || channel == 33)
-            {
-                TRIGGER = data;
-                ROUTE_TRIGGER = channel-32;
-            }
-
         }
     }
     if(!lowtsset)
@@ -3506,8 +3500,6 @@ std::vector<mdpp16_scp> sortData(std::vector<uint32_t> subEventData, MVMEmodule 
         temporary_module.PILEUP = PILEUP.at(i);
         temporary_module.TOF = TOF.at(i);
         temporary_module.ROUTE_EVT = ROUTE_EVT.at(i);
-        temporary_module.TRIGGER = TRIGGER;
-        temporary_module.ROUTE_TRIGGER = ROUTE_TRIGGER;
         temporary_module.TIMESTAMP = TIMESTAMP;
         module_to_return.push_back(temporary_module);
     }
