@@ -8,7 +8,7 @@ To build this, you will need:
 
 - A recent version of [CERN ROOT](https://root.cern/ "ROOT: analyzing petabytes of data, scientifically."). Tested with 6.26 and 6.28.
 - libzip (on Debian based distros, sudo apt install libzip-dev)
-- nlohmann json (tested with 3.10.5, installed via sudo apt nlohmann-json3-dev in Ubuntu 22.04)
+- nlohmann json (tested with 3.10.5, installed via sudo apt install nlohmann-json3-dev in Ubuntu 22.04)
 
 ## Install
 
